@@ -66,21 +66,30 @@ function concertQuery(media) {
     function (response) {
       var data = response.data
       var lineup = []
+      var output = {}
+      var location
 
       if (!Array.isArray(data) || !data.length) {
         console.log(`There are no concerts showing for ${capitalize(media)}`)
         console.log("--")
       } else {
-        capitalize(media)
+        printSearch(media)
         for (let i = 0; i < 5; i++) {
           lineup = data[i].lineup[0]
-          var output = {
-            event: `${lineup} @ ${data[i].venue.name} | ${data[i].venue.city}, ${data[i].venue.region} | ${moment(data[i].datetime).format("dddd, MMMM Do, h:mm a")} \n`,
+
+          if (!data[i].venue.region) {
+            location = data[i].venue.country
+          } else {
+            location = data[i].venue.region
+          }
+
+          output = {
+            event: `${lineup} @ ${data[i].venue.name} | ${data[i].venue.city}, ${location} | ${moment(data[i].datetime).format("dddd, MMMM Do, h:mm a")} \n`,
           }
 
           for (var prop in output) {
             console.log(output[prop])
-            append(output[prop])
+            // append(output[prop])
           }
         }
         console.log(hr)
@@ -100,7 +109,7 @@ function spotifyQuery(media) {
     if (err) {
       return console.log('Error occurred: ' + err);
     } else {
-      capitalize(media)
+      printSearch(media)
       for (let i = 0; i < 5; i++) {
         var output = {
           track: `${data[i].name} | ${data[i].album.artists[0].name}, ${data[i].album.name} | ${data[i].external_urls.spotify} \n`,
@@ -136,7 +145,7 @@ function append(output) {
   })
 }
 
-function capitalize(str) {
+function printSearch(str) {
   if (str.includes("+")) {
     str = str.split("+");
     for (var i = 0; i < str.length; i++) {
