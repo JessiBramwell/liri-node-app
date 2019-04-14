@@ -14,7 +14,7 @@ inquirer
     {
       type: 'list',
       message: 'What would you like to search for?',
-      choices: ['Concerts', 'A Song on Spotify', 'Movie Details'/*, 'Surpise me'*/],
+      choices: ['Concerts', 'A Song on Spotify', 'Movie Details'],
       name: 'action',
     },
     {
@@ -123,22 +123,6 @@ function spotifyQuery(media) {
   });
 }
 
-function readQuery() {
-  fs.readFile("random.txt", 'utf8', function (err, data) {
-    if (err) {
-      return console.log(error);
-    } else {
-      console.log(data)
-      data = data.replace(/['"]+/g, '')
-      var readArray = data.split(',')
-      console.log(readArray)
-      action = readArray[0]
-      media = readArray[1]
-      return media
-    }
-  });
-}
-
 function append(output) {
   var entry
   var str = '\n'
@@ -181,6 +165,3 @@ function capitalize(str) {
   console.log(chalk.bold(`Search results for: ${chalk.cyan(str)} \n`))
   return str
 }
-// .`node liri.js do-what-it-says`
-
-// take screengrabs and video of operational app
