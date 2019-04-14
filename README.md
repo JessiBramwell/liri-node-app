@@ -6,16 +6,16 @@ This is a media query app built with Node.js. It uses inquirer to prompt users t
 
 ![Node app example](img/Screenshot_23.png)
 
-First, users are prompted to choose from three search options. The following images show that prompt dialogue and results: 
+First, users are prompted to choose from three search options. All searches are saved in the log.txt file with a timestamp. The following images show that prompt dialogue and results: 
 
 ![Node app example](img/Screenshot_24.png)
 ![Node app example](img/Screenshot_25.png)
 ![Node app example](img/Screenshot_26.png)
-![Node app example](img/Screenshot_29.png)
+![Node app example](img/Screenshot_27.png)
 
 If no response is given the program has a default search input.
 
-![Node app example](img/Screenshot_23.png)
+![Node app example](img/Screenshot_29.png)
 
 A message is displayed if an invalid input is given.
 ![Node app example](img/Sketch.png)
