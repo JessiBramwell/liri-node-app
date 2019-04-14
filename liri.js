@@ -44,13 +44,14 @@ function movieQuery(media) {
 
   if (media === "") {
     media = "Mr. Nobody"
+    console.log(chalk.green('Your search was left blank. Try Mr. Nobody.'));    
   }
   var queryUrl = `http://www.omdbapi.com/?t=${media}&y=&plot=short&apikey=trilogy`;
   axios.get(queryUrl).then(
     function (response) {
       var data = response.data;
 
-      if (!Array.isArray(data) || !data.length) {
+      if (!data.length) {
         console.log(chalk.red(`There are no movies showing for: ${capitalize(media)}`))
       } else {
         output = {
@@ -101,6 +102,7 @@ function spotifyQuery(media) {
 
   if (!media) {
     media = "The Sign, Ace of Base"
+    console.log(chalk.green('Your search was left blank. Try The Sign, by Ace of Base.'));
   }
   spotify.search({ type: 'track', query: media, limit: 5 }, function (err, response) {
     var data, result
@@ -156,7 +158,7 @@ function append(output) {
   }
 
   entry = hr.concat(str, hr)
-  console.log(chalk.green(entry));
+  console.log(chalk.cyan(entry));
 
   fs.appendFile("log.txt", timeStamp.concat(entry), function (err) {
     if (err) {
